@@ -74,8 +74,8 @@ def getEmployeeCost(filePath):
     index = 73
     
     while data.iloc[index][0] is not "Summe netto":
-        print(index)
         index= index + 1
+        print(index)
 getEmployeeCost('excelData.xlsx')        
 #genRandomCustomer('excelData.xlsx')
 #genCostsTable('excelData.xlsx')
