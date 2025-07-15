@@ -5,10 +5,7 @@ from mitarbeiterKosten import MitarbeiterKosten
 import datetime
 import os
 
-with open('rechnung.tex','r',encoding='utf-8') as texFile:
-    tex = texFile.read()
-
-
+#functions
 def getUsedGood(filePath):
     data = pd.read_excel(filePath)
     output = []
@@ -120,7 +117,7 @@ genEmployeeCostTable('excelData.xlsx')
 project_folder = os.getcwd()
 output_dir = os.path.join(project_folder, "output")
 file_path = os.path.join(project_folder, "rechnung.tex")
-
-command = f'xelatex -output-directory={output_dir} -jobname={"testiiiing"} {file_path}'
+jobname = "placeholder"
+command = f'xelatex -output-directory={output_dir} -jobname={jobname} {file_path}'
 os.system(command)
 #automatisch rechnung.tex rendern und in output ordner speichern
