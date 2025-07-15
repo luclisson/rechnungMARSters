@@ -3,6 +3,7 @@ import pandas as pd
 from usedGood import UsedGood
 from mitarbeiterKosten import MitarbeiterKosten
 import datetime
+import os
 
 with open('rechnung.tex','r',encoding='utf-8') as texFile:
     tex = texFile.read()
@@ -110,11 +111,16 @@ def genEmployeeCostTable(filePath):
     with open('mitarbeiterKosten.tex','w') as file:
         file.write(header+"\n"+content+"\n"+fotter)
 
-
-
-
 genRandomCustomer('excelData.xlsx')
 genCostsTable('excelData.xlsx')
 genGoodsTable('excelData.xlsx')
 genEmployeeCostTable('excelData.xlsx')
+
+#folders
+project_folder = os.getcwd()
+output_dir = os.path.join(project_folder, "output")
+file_path = os.path.join(project_folder, "rechnung.tex")
+
+command = f'xelatex -output-directory={output_dir} -jobname={"testiiiing"} {file_path}'
+os.system(command)
 #automatisch rechnung.tex rendern und in output ordner speichern
