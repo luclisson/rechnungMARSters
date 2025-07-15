@@ -15,17 +15,20 @@
 \fancyhf{}
 \fancyfoot[C]{%
   \rule{\textwidth}{0.4pt}
-  \vspace{0.2em}
+\begingroup
+  \rowcolors{2}{}{} % lokal ausschalten
+  \vspace{0.5em}
   \scriptsize
-  \begin{tabularx}{\textwidth}{X X X}
-  MARSters GmbH & Tel.: 0123 456789 & CommerzbankAG \\
-  Inh. 90 Minuten & info@marsters.de & BLZ: 123 4948 29 \\
-  Jungfernstieg 1 & www.MARSters.de & KTO: 12345672 \\
-  20354 Hamburg & & Steuer-Nr.: 12345613, \\ Finanzamt Hamburg-Mitte \\
+  \begin{tabularx}{\textwidth}{@{}X X X X@{}}
+  MARSters GmbH & Tel.: 0123 456789 & Commerzbank AG & Steuer-Nr.: 12345613, \\
+  Inh. 90 Minuten & info@marsters.de & BLZ: 123 4948 29 & Finanzamt Hamburg-Mitte \\
+  Jungfernstieg 1 & www.MARSters.de & KTO: 12345672 & \\
+  20354 Hamburg & & KTO-Inh. 90 Minuten & \\
   \end{tabularx}
+  \endgroup
 }
 \fancyfoot[R]{\tiny Seite \thepage\ von \pageref{LastPage}}
-
+\vspace{0.2em}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.8em}
 
@@ -78,7 +81,7 @@ Fixkosten:
 \input{goodsTable.tex}
 \end{tabularx}
 \vspace{8.5em}
-\rule{\textwidth}{0.5pt}
+
 
 
 \renewcommand{\arraystretch}{1.4}
