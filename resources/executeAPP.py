@@ -4,6 +4,7 @@ from resources.usedGood import UsedGood
 from resources.mitarbeiterKosten import MitarbeiterKosten
 import datetime
 import os
+import json
 
 #functions
 def getUsedGood(filePath):
@@ -53,6 +54,8 @@ def genCostsTable(filePath):
         file.write(content)
 def genRandomCustomer(filePath):
     rechnungsnummer = r.randint(1000000000,3999999999)
+    with open('resources/letzteRechnungsnummer.json','w') as json_file:
+        json.dump({"num":rechnungsnummer},json_file)
     kundennummer = r.randint(10000,99999)
     datum = datetime.datetime.now().strftime("%d.%m.%Y")
     content = fr"""
@@ -123,10 +126,15 @@ def execute(filePath):
     resources_dir = os.path.join(project_folder, "resources")
     os.chdir(resources_dir)
 
-
-    file_path = os.path.join(project_folder, "resources/rechnung.tex")
-    jobname = "placeholder"
-    command = f'xelatex -output-directory={output_dir} -jobname={jobname} {file_path}'
+    output_dir_relative = "../output"
+    file_path_relative = "rechnung.tex"
+    
+    with open('letzteRechnungsnummer.json','r') as json_file:
+        data = json.load(json_file)
+        num = data["num"]
+    
+    jobname = f"Rechnung_{num}"
+    command = f'xelatex -output-directory={output_dir_relative} -jobname={jobname} {file_path_relative}'
 
     #command execution
     os.system(command)
