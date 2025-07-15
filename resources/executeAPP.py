@@ -24,7 +24,7 @@ def getUsedGood(filePath):
     return output
 def genGoodsTable(filePath):
     usedGoods = getUsedGood(filePath)
-    tableHead = r"""\textbf{Pos} & \textbf{Leistung}  & \textbf{Einzelpreis} & \textbf{Anzahl} & \textbf{Gesamtpreis} \\
+    tableHead = r"""\textbf{Pos} & \textbf{Service}  & \textbf{Unit price} & \textbf{Quantity} & \textbf{Total price} \\
                     \hline
                 """
     content = ""
@@ -45,9 +45,9 @@ def getCosts(filePath):
 def genCostsTable(filePath):
     data = getCosts(filePath)
     content = f"""
-                \\textbf{{Nettobetrag:}} & {data[0]} EUR \\\\
-                zzgl. 19\,\\% MwSt: & {data[1]} EUR \\\\
-                \\textbf{{Gesamtbetrag:}} & \\textbf{{{data[2]:.2f}}} EUR \\\\
+                \\textbf{{Net amount:}} & {data[0]} EUR \\\\
+                plus 19\,\\% VAT: & {data[1]} EUR \\\\
+                \\textbf{{Total amount:}} & \\textbf{{{data[2]:.2f}}} EUR \\\\
                 """
     with open('resources/texComps/gesBetraege.tex','w')as file:
         file.write(content)
@@ -93,10 +93,10 @@ def getEmployeeCost(filePath):
 def genEmployeeCostTable(filePath):
     costArr = getEmployeeCost(filePath)
     header= r"""
-                \begin{tabularx}{\textwidth}{|l|X|l|r|r|}
+                \begin{tabularx}{\textwidth}{|l|X|r|r|r|}
                 \hline
                 \rowcolor{gray!30}
-                \textbf{Pos} & \textbf{Leistung} & \textbf{Stunden} & \textbf{Satz/h} & \textbf{Gesamtkosten} \\
+                \textbf{Pos} & \textbf{Service} & \textbf{Hours} & \textbf{Rate/hr} & \textbf{Total costs} \\
                 \hline 
             """
     content = ""
