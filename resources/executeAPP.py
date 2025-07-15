@@ -4,6 +4,7 @@ from resources.usedGood import UsedGood
 from resources.mitarbeiterKosten import MitarbeiterKosten
 import datetime
 import os
+import json
 
 #functions
 def getUsedGood(filePath):
@@ -23,7 +24,7 @@ def getUsedGood(filePath):
     return output
 def genGoodsTable(filePath):
     usedGoods = getUsedGood(filePath)
-    tableHead = r"""\textbf{Pos} & \textbf{Service}  & \textbf{Einzelpreis} & \textbf{Quantity} & \textbf{Total price} \\
+    tableHead = r"""\textbf{Pos} & \textbf{Leistung}  & \textbf{Einzelpreis} & \textbf{Anzahl} & \textbf{Gesamtpreis} \\
                     \hline
                 """
     content = ""
@@ -44,14 +45,16 @@ def getCosts(filePath):
 def genCostsTable(filePath):
     data = getCosts(filePath)
     content = f"""
-                \\textbf{{Net amount:}} & {data[0]} EUR \\\\
-                plus 19\,\\% VAT: & {data[1]} EUR \\\\
-                \\textbf{{Total amount:}} & \\textbf{{{data[2]:.2f}}} EUR \\\\
+                \\textbf{{Nettobetrag:}} & {data[0]} EUR \\\\
+                zzgl. 19\,\\% MwSt: & {data[1]} EUR \\\\
+                \\textbf{{Gesamtbetrag:}} & \\textbf{{{data[2]:.2f}}} EUR \\\\
                 """
     with open('resources/texComps/gesBetraege.tex','w')as file:
         file.write(content)
 def genRandomCustomer(filePath):
     rechnungsnummer = r.randint(1000000000,3999999999)
+    with open('resources/letzteRechnungsnummer.json','w') as json_file:
+        json.dump({"num":rechnungsnummer},json_file)
     kundennummer = r.randint(10000,99999)
     datum = datetime.datetime.now().strftime("%d.%m.%Y")
     content = fr"""
@@ -93,7 +96,7 @@ def genEmployeeCostTable(filePath):
                 \begin{tabularx}{\textwidth}{|l|X|l|r|r|}
                 \hline
                 \rowcolor{gray!30}
-                \textbf{Pos} & \textbf{Service} & \textbf{Hours} & \textbf{Rate/hr} & \textbf{Total} \\
+                \textbf{Pos} & \textbf{Leistung} & \textbf{Stunden} & \textbf{Satz/h} & \textbf{Gesamtkosten} \\
                 \hline 
             """
     content = ""
@@ -120,10 +123,15 @@ def execute(filePath):
     resources_dir = os.path.join(project_folder, "resources")
     os.chdir(resources_dir)
 
-
-    file_path = os.path.join(project_folder, "resources/rechnung.tex")
-    jobname = "placeholder"
-    command = f'xelatex -output-directory={output_dir} -jobname={jobname} {file_path}'
+    output_dir_relative = "../output"
+    file_path_relative = "rechnung.tex"
+    
+    with open('letzteRechnungsnummer.json','r') as json_file:
+        data = json.load(json_file)
+        num = data["num"]
+    
+    jobname = f"Rechnung_{num}"
+    command = f'xelatex -output-directory={output_dir_relative} -jobname={jobname} {file_path_relative}'
 
     #command execution
     os.system(command)
