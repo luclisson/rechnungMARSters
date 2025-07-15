@@ -6,6 +6,8 @@ import datetime
 
 with open('rechnung.tex','r',encoding='utf-8') as texFile:
     tex = texFile.read()
+
+
 def getUsedGood(filePath):
     data = pd.read_excel(filePath)
     output = []
@@ -85,9 +87,8 @@ def getEmployeeCost(filePath):
         output.append(MitarbeiterKosten(leistung=leistung, stunden=stunde, satz=satz,gesamtkosten=kosten))
         index = index + 1
     return output
-
 def genEmployeeCostTable(filePath):
-    costArr = getEmployeeCost('excelData.xlsx')
+    costArr = getEmployeeCost(filePath)
     header= r"""
                 \begin{longtable}{|c|p{6cm}|c|r|r|}
                 \hline
@@ -108,9 +109,12 @@ def genEmployeeCostTable(filePath):
             """
     with open('mitarbeiterKosten.tex','w') as file:
         file.write(header+"\n"+content+"\n"+fotter)
-#getEmployeeCost('excelData.xlsx')
+
+
+
+
+genRandomCustomer('excelData.xlsx')
+genCostsTable('excelData.xlsx')
+genGoodsTable('excelData.xlsx')
 genEmployeeCostTable('excelData.xlsx')
-#genRandomCustomer('excelData.xlsx')
-#genCostsTable('excelData.xlsx')
-#genGoodsTable('excelData.xlsx')
 #automatisch rechnung.tex rendern und in output ordner speichern
