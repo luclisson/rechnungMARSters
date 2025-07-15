@@ -32,7 +32,6 @@ def genGoodsTable(filePath):
             {i+1} & {usedGoods[i].leistung} &  {usedGoods[i].einzelpreis:.2f} EUR & {usedGoods[i].anzahl} & {usedGoods[i].gesamtpreis:.2f} EUR \\
             \hline
         """
-    content+= r'\hline'
 
     with open('resources/texComps/goodsTable.tex','w') as outputFile:
         outputFile.write(tableHead + content)
@@ -56,7 +55,7 @@ def genRandomCustomer(filePath):
     kundennummer = r.randint(10000,99999)
     datum = datetime.datetime.now().strftime("%d.%m.%Y")
     content = fr"""
-                Rechnung Nr. {rechnungsnummer} & Kunden-Nr.: {kundennummer} & Datum: {datum} \\
+                Offer Nr. {rechnungsnummer} & Customer Nr.: {kundennummer} & Date: {datum} \\
                 """
     with open('resources/texComps/customerData.tex','w') as file:
         file.write(content)
@@ -91,23 +90,21 @@ def getEmployeeCost(filePath):
 def genEmployeeCostTable(filePath):
     costArr = getEmployeeCost(filePath)
     header= r"""
-                \begin{longtable}{|c|p{6cm}|c|r|r|}
+                \begin{tabularx}{\textwidth}{|l|X|l|r|r|}
                 \hline
                 \rowcolor{gray!30}
                 \textbf{Pos} & \textbf{Leistung} & \textbf{Stunden} & \textbf{Satz/h} & \textbf{Gesamtkosten} \\
-                \hline
-                \endfirsthead
                 \hline 
             """
     content = ""
 
     for i in range(len(costArr)):
         content +=fr"""
-                    {i+1} & {costArr[i].leistung} & {costArr[i].stunden} & {costArr[i].satz} EUR & {costArr[i].gesamtkosten} EUR \\
+                    {i+1} & {costArr[i].leistung} & {costArr[i].stunden} & {costArr[i].satz:.2f} EUR & {costArr[i].gesamtkosten:.2f} EUR \\
                     \hline 
                     """
     fotter = r"""
-                \end{longtable} 
+                \end{tabularx} 
             """
     with open('resources/texComps/mitarbeiterKosten.tex','w') as file:
         file.write(header+"\n"+content+"\n"+fotter)
