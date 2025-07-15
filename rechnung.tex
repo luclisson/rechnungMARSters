@@ -81,33 +81,10 @@ Fixkosten:
 \input{goodsTable.tex}
 \end{tabularx}
 \vspace{8.5em}
-
-
-
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
-\begin{longtable}{|c|p{6cm}|c|r|c|r|}
-\hline
-\rowcolor{gray!30}
-\textbf{Pos} & \textbf{Leistung} & \textbf{MwSt.} & \textbf{Einzelpreis} & \textbf{Anzahl} & \textbf{Gesamtpreis} \\
-\hline
-\endfirsthead
 
-\hline
-\rowcolor{gray!30}
-\textbf{Pos} & \textbf{Leistung} & \textbf{MwSt.} & \textbf{Einzelpreis} & \textbf{Anzahl} & \textbf{Gesamtpreis} \\
-\hline
-\endhead
-
-% === Rechnungspositionen ===
-1 & PC & 19\% & 100 EUR & 12 & 1200 EUR \\
-\hline
-1 & PC & 19\% & 100 EUR & 12 & 1200 EUR \\
-\hline
-% ... weitere Zeilen hier ...
-1 & PC & 19\% & 100 EUR & 12 & 1200 EUR \\
-\hline
-\end{longtable}
+\input{mitarbeiterKosten.tex}
 
 % === Zahlungshinweis + Summe ===
 \noindent

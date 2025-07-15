@@ -1,10 +1,13 @@
 import random as r
 import pandas as pd
 from usedGood import UsedGood
+from mitarbeiterKosten import MitarbeiterKosten
 import datetime
 
 with open('rechnung.tex','r',encoding='utf-8') as texFile:
     tex = texFile.read()
+
+
 def getUsedGood(filePath):
     data = pd.read_excel(filePath)
     output = []
@@ -70,14 +73,48 @@ def genRandomCustomer(filePath):
     with open('customerAnschrift.tex','w') as file:
         file.write(contentAddresse) 
 def getEmployeeCost(filePath):
+    output=[]
     data = pd.read_excel(filePath)
     index = 73
     
-    while data.iloc[index][0] is not "Summe netto":
-        print(index)
-        index= index + 1
-getEmployeeCost('excelData.xlsx')        
-#genRandomCustomer('excelData.xlsx')
-#genCostsTable('excelData.xlsx')
-#genGoodsTable('excelData.xlsx')
+    while True:
+        if data.iloc[index][0] == "Summe netto":
+            break
+        leistung = data.iloc[index][0]
+        stunde = data.iloc[index][1]
+        satz = data.iloc[index][2]
+        kosten = data.iloc[index][3]
+        output.append(MitarbeiterKosten(leistung=leistung, stunden=stunde, satz=satz,gesamtkosten=kosten))
+        index = index + 1
+    return output
+def genEmployeeCostTable(filePath):
+    costArr = getEmployeeCost(filePath)
+    header= r"""
+                \begin{longtable}{|c|p{6cm}|c|r|r|}
+                \hline
+                \rowcolor{gray!30}
+                \textbf{Pos} & \textbf{Leistung} & \textbf{Stunden} & \textbf{Satz} & \textbf{Gesamtkosten} \\
+                \hline
+                \endfirsthead
+            """
+    content = ""
+
+    for i in range(len(costArr)):
+        content +=fr"""
+                    \hline 
+                    {i+1} & {costArr[i].leistung} & {costArr[i].stunden} & {costArr[i].satz} & {costArr[i].gesamtkosten} \\
+                    """
+    fotter = r"""
+                \end{longtable} 
+            """
+    with open('mitarbeiterKosten.tex','w') as file:
+        file.write(header+"\n"+content+"\n"+fotter)
+
+
+
+
+genRandomCustomer('excelData.xlsx')
+genCostsTable('excelData.xlsx')
+genGoodsTable('excelData.xlsx')
+genEmployeeCostTable('excelData.xlsx')
 #automatisch rechnung.tex rendern und in output ordner speichern
