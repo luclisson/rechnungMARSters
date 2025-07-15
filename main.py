@@ -1,6 +1,7 @@
 import random as r
 import pandas as pd
 from usedGood import UsedGood
+from mitarbeiterKosten import MitarbeiterKosten
 import datetime
 
 with open('rechnung.tex','r',encoding='utf-8') as texFile:
@@ -70,13 +71,28 @@ def genRandomCustomer(filePath):
     with open('customerAnschrift.tex','w') as file:
         file.write(contentAddresse) 
 def getEmployeeCost(filePath):
+    output=[]
     data = pd.read_excel(filePath)
     index = 73
     
-    while data.iloc[index][0] is not "Summe netto":
-        index= index + 1
-        print(index)
-getEmployeeCost('excelData.xlsx')        
+    while True:
+        if data.iloc[index][0] == "Summe netto":
+            break
+        leistung = data.iloc[index][0]
+        stunde = data.iloc[index][1]
+        satz = data.iloc[index][2]
+        kosten = data.iloc[index][3]
+        output.append(MitarbeiterKosten(leistung=leistung, stunden=stunde, satz=satz,gesamtkosten=kosten))
+        index = index + 1
+
+    getEmployeeCost('excelData.xlsx')        
+
+def genEmployeeCostTable(filePath):
+    costArr = getEmployeeCost(filePath)
+    content = fr"""
+
+                """
+
 #genRandomCustomer('excelData.xlsx')
 #genCostsTable('excelData.xlsx')
 #genGoodsTable('excelData.xlsx')
