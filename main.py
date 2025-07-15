@@ -88,6 +88,14 @@ def getEmployeeCost(filePath):
 
 def genEmployeeCostTable(filePath):
     costArr = getEmployeeCost('excelData.xlsx')
+    header= r"""
+                \begin{longtable}{|c|p{6cm}|c|r|r|}
+                \hline
+                \rowcolor{gray!30}
+                \textbf{Pos} & \textbf{Leistung} & \textbf{Stunden} & \textbf{Satz} & \textbf{Gesamtkosten} \\
+                \hline
+                \endfirsthead
+            """
     content = ""
 
     for i in range(len(costArr)):
@@ -95,8 +103,11 @@ def genEmployeeCostTable(filePath):
                     \hline 
                     {i+1} & {costArr[i].leistung} & {costArr[i].stunden} & {costArr[i].satz} & {costArr[i].gesamtkosten} \\
                     """
+    fotter = r"""
+                \end{longtable} 
+            """
     with open('mitarbeiterKosten.tex','w') as file:
-        file.write(content)
+        file.write(header+"\n"+content+"\n"+fotter)
 #getEmployeeCost('excelData.xlsx')
 genEmployeeCostTable('excelData.xlsx')
 #genRandomCustomer('excelData.xlsx')
