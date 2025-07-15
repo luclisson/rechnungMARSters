@@ -12,6 +12,7 @@
 \usepackage{longtable}
 
 \pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
 \fancyhf{}
 \fancyfoot[C]{%
   \rule{\textwidth}{0.4pt}
@@ -22,8 +23,8 @@
   \begin{tabularx}{\textwidth}{@{}X X X X@{}}
   MARSters GmbH & Tel.: 0123 456789 & Commerzbank AG & Steuer-Nr.: 12345613, \\
   Inh. 90 Minuten & info@marsters.de & BLZ: 123 4948 29 & Finanzamt Hamburg-Mitte \\
-  Jungfernstieg 1 & www.MARSters.de & KTO: 12345672 & \\
-  20354 Hamburg & & KTO-Inh. 90 Minuten & \\
+  Jungfernstieg 1, & www.MARSters.de & KTO: 12345672 & HRB 102938,\\
+  20354 Hamburg & & KTO-Inh. 90 Minuten & Amtsgericht Hamburg\\
   \end{tabularx}
   \endgroup
 }
@@ -58,7 +59,7 @@ Internet: www.MARSters.de
 \vspace{1.8em}
 
 % === Rechnungstitel und Info ===
-\textbf{\LARGE Rechnung}
+\textbf{\LARGE Offer}
 
 \vspace{1em}
 \begin{tabularx}{\textwidth}{@{}l X r@{}}
@@ -68,48 +69,63 @@ Internet: www.MARSters.de
 \small\textit{Bitte bei Zahlungen und Schriftverkehr angeben!}
 
 \vspace{1em}
-Fixkosten:
+\begin{flushleft}
+Fixed costs: \\
 \rule{\textwidth}{0.5pt}
+\end{flushleft}
 
 % === Positionstabelle ===
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
-\begin{tabularx}{\textwidth}{|c|X|c|r|c|r|}
+\begin{tabularx}{\textwidth}{|l|X|r|l|r|}
 \hline
 \rowcolor{gray!30}
 
 \input{texComps/goodsTable.tex}
 \end{tabularx}
 \vspace{8.5em}
+
+\vspace{1em}
+\begin{flushleft}
+Variable costs: \\
+\rule{\textwidth}{0.5pt}
+\end{flushleft}
+
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 
 \input{texComps/mitarbeiterKosten.tex}
 
+
+\vspace{3.5em}
 % === Zahlungshinweis + Summe ===
-\noindent
-\begin{minipage}[t]{0.48\textwidth}
-\renewcommand{\arraystretch}{1.3}
-\rowcolors{1}{}{gray!10}
-\begin{tabularx}{\linewidth}{@{}X r@{}}
-\input{texComps/gesBetraege.tex}
-\end{tabularx}
-\end{minipage}
+\fbox{%
+  \noindent
+  \begin{minipage}[t]{0.48\textwidth}
+  \renewcommand{\arraystretch}{1.3}
+  \begingroup
+    \rowcolors{2}{}{} % lokal ausschalten
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+  \input{texComps/gesBetraege.tex}
+  \end{tabularx}
+  \endgroup
+  \end{minipage}
+}
+\vfill
+
 \begin{minipage}[t]{\textwidth}
 \small
 \textbf{Zahlungshinweis:} \\
-Der Gesamtbetrag ist ab Erhalt dieser Rechnung
-zahlbar innerhalb von 7 Tagen ohne Abzug.
-Wir bieten Ihre spezifische Dienstleistung an, die optimal auf den Aufbau eines robusten Netzwerks auf dem Mars zugeschnitten ist. 
+Der Gesamtbetrag ist ab Erhalt dieser Rechnung zahlbar innerhalb von 7 Tagen ohne Abzug.\\
+Wir bieten Ihre spezifische Dienstleistung an, die optimal auf den Aufbau eines robusten Netzwerks auf dem Mars zugeschnitten ist.\\
 Als Teil der MARSters-Initiative erhalten Sie dabei einen exklusiven Rabatt von 10\% auf unsere Leistungen.
 \end{minipage}
-\hfill
-
 
 \vspace{1.5em}
+
 \footnotesize
 Die aufgeführten Dienstleistungen haben Sie gemäß unserer AGB erhalten.\\
-Wenn nicht anders angegeben entspricht das Leistungsdatum dem Rechnungsdatum.
+Wenn nicht anders angegeben, entspricht das Leistungsdatum dem Rechnungsdatum.
 
 
 
