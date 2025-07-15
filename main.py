@@ -84,15 +84,21 @@ def getEmployeeCost(filePath):
         kosten = data.iloc[index][3]
         output.append(MitarbeiterKosten(leistung=leistung, stunden=stunde, satz=satz,gesamtkosten=kosten))
         index = index + 1
-
-    getEmployeeCost('excelData.xlsx')        
+    return output
 
 def genEmployeeCostTable(filePath):
-    costArr = getEmployeeCost(filePath)
-    content = fr"""
+    costArr = getEmployeeCost('excelData.xlsx')
+    content = ""
 
-                """
-
+    for i in range(len(costArr)):
+        content +=fr"""
+                    \hline 
+                    {i+1} & {costArr[i].leistung} & {costArr[i].stunden} & {costArr[i].satz} & {costArr[i].gesamtkosten} \\
+                    """
+    with open('mitarbeiterKosten.tex','w') as file:
+        file.write(content)
+#getEmployeeCost('excelData.xlsx')
+genEmployeeCostTable('excelData.xlsx')
 #genRandomCustomer('excelData.xlsx')
 #genCostsTable('excelData.xlsx')
 #genGoodsTable('excelData.xlsx')

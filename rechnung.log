@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025/Homebrew) (preloaded format=xelatex 2025.3.15)  15 JUL 2025 15:46
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025/Homebrew) (preloaded format=xelatex 2025.3.15)  15 JUL 2025 17:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -225,7 +225,8 @@ Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
 \c@LT@tables=\count295
 \c@LT@chunks=\count296
 \LT@p@ftn=\toks23
-) (./rechnung.aux)
+)
+No file rechnung.aux.
 \openout1 = `rechnung.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -244,7 +245,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -343,25 +343,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--1
  []
 
 ) (./customerData.tex) (./customerData.tex) (./customerData.tex) (./goodsTable.tex) (./goodsTable.tex) (./goodsTable.tex)
-Overfull \hbox (2.03291pt too wide) in alignment at lines 86--91
- [] [] [] [] [] [] 
- []
 
 
-Overfull \hbox (2.03291pt too wide) in alignment at lines 91--97
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (2.03291pt too wide) in alignment at lines 97--107
- [] [] [] [] [] [] 
- []
-
-
+LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 84.
 
 [1
 
-] (./gesBetraege.tex) (./gesBetraege.tex) (./gesBetraege.tex)
+] (./mitarbeiterKosten.tex
+./mitarbeiterKosten.tex:2: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \penalty \@M \futurelet \@let@token \LT@@h...
+l.2                     \hline
+                              
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./mitarbeiterKosten.tex:3: Misplaced \omit.
+\multispan ->\omit 
+                   \@multispan 
+l.3                     1
+                          & Netzwerktechnik-Spezialist & 150 & 1200 & 180000 \\
+I expect to see \omit only after tab marks or the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/Arial(0)/m/n/10.95 Hardwareinstallation (Roboter-
+ []
+
+)
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 1 on input line 92.
+
+(./gesBetraege.tex) (./gesBetraege.tex) (./gesBetraege.tex)
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
+
+
+
+LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 120.
 
 [2] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -370,14 +392,24 @@ enddocument/afterlastpage (AED): lastpage setting LastPage.
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package lastpage Warning: Rerun to get the references right on input line 120.
+
  ) 
 Here is how much of TeX's memory you used:
- 6486 strings out of 473832
- 158645 string characters out of 5719382
- 625504 words of memory out of 5000000
- 29461 multiletter control sequences out of 15000+600000
- 562697 words of font info for 74 fonts, out of 8000000 for 9000
+ 6491 strings out of 473832
+ 158817 string characters out of 5719382
+ 621395 words of memory out of 5000000
+ 29464 multiletter control sequences out of 15000+600000
+ 562705 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 79i,19n,93p,245b,561s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,19n,93p,245b,487s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on rechnung.pdf (2 pages).
