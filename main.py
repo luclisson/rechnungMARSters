@@ -46,7 +46,7 @@ def genCostsTable(filePath):
     content = f"""
                 \\textbf{{Nettobetrag:}} & {data[0]} EUR \\\\
                 zzgl. 19\,\\% MwSt: & {data[1]} EUR \\\\
-                \\textbf{{Gesamtbetrag:}} & \\textbf{data[2]} EUR \\\\
+                \\textbf{{Gesamtbetrag:}} & \\textbf{{{data[2]:.2f}}} EUR \\\\
                 """
     with open('gesBetraege.tex','w')as file:
         file.write(content)
